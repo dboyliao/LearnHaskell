@@ -1,0 +1,3 @@
+learn haskell
+learn C
+learn js
