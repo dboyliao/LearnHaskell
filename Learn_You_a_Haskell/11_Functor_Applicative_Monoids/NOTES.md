@@ -54,7 +54,7 @@ fmap id (CJust 0 "what") == id (CJust 0 "what")
   to make the first law holds on `CMaybe` type. However, I think 
   it is conceptually inconsistent with what we expect.
 
-# Applicative
+## More Example on `Functor`
 - Let's see some examples
   - `fmap :: (a -> b) -> f a -> f b`
   - `(++) :: [a] -> ([a] -> [a])`
@@ -67,3 +67,9 @@ fmap id (CJust 0 "what") == id (CJust 0 "what")
 app :: Maybe ([Char] -> [Char])
 app = fmap (++) (Just "Haha")
 ```
+- The reason why we can do this is that functions in **Haskell**
+  are curried by default
+- Intuition: `fmap` a function over a `Functor` is like wrapping a
+  curried function into an execution context.
+
+# Applicative
