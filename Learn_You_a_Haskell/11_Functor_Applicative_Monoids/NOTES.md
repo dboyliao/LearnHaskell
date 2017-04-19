@@ -199,7 +199,7 @@ As you can see, together with `ZipList`, `<$>` and `<*>`, we can easily extend c
 ## Usage of `newtype`
 
 - Wrapping types to make it an instance of the typeclass we want it to be.
-- ex:
+  - ex:
 ```haskell
 -- Making tuple (a, b) an instance of Functor
 -- Notice the order of type variables `a` and `b`
@@ -208,6 +208,9 @@ newtype Pair b a = Pair { getPair :: (a,b) }
 instance Functor (Pair c) where  
     fmap f (Pair (x,y)) = Pair (f x, y) 
 ```
+- Sometime, there may be more than one way to make a type an instance of a type class
+  - ex: `Sum` and `Product` in `Data.Monoid`
+    - we can make `Num` be a instance of `Monoid` via `+` or `*`.
 
 ## Laziness of `newtype`
 
@@ -289,6 +292,20 @@ hello b -- "Hello"
 - It exports names clash with `Preclude`, better to import it qualified.
   - It expose `foldr`, `foldl`, `foldr1` and `foldl1`
   - The difference is that they works on all `Foldable` instances, whereas `Preclude` version work only on `[a]`
+- `foldMap :: (Monoid m, Foldable t) => (a -> m) -> t a -> m`
+  - I think the reason why we need `Monoid m` in the type constrain is than we now can generalize the operation such as `+`, `-`, `*`, ...etc to a common concept `mappend`. This will give us more flexibility than making type (with type parameters) an instance of `Functor` via `fmap`. 
+    - ex: 
+```haskell
+data Tree a = Empty | Node a (Tree a) (Tree a)
+instance F.Foldable Tree where  
+    foldMap f Empty = mempty  
+    foldMap f (Node x l r) = F.foldMap f l `mappend`  
+                             f x           `mappend`  
+                             F.foldMap f r
+```
+
+Now you can see that this `Tree a` type works on all `Monoid` which is very flexible. 
+
 
 # Reference
 
