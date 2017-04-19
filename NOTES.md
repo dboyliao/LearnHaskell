@@ -5,3 +5,8 @@
 
 - [stack - Haskell Build System](https://docs.haskellstack.org/en/stable/GUIDE/#user-guide)
 - [Debugging - Haskell Wiki](https://wiki.haskell.org/Debugging)
+- [Gentle Intro Haskell](https://www.cs.auckland.ac.nz/references/haskell/haskell-intro-html/)
+
+## Interesting Haskell Projects
+
+- [Xmonad](http://xmonad.org/download.html)
