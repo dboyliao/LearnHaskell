@@ -4,3 +4,6 @@
 [submodule "ghc"]
 	path = ghc
 	url = git://git.haskell.org/ghc.git
+[submodule "Haskell-University"]
+	path = Haskell-University
+	url = https://github.com/HaskellChamber/Haskell-University.git
